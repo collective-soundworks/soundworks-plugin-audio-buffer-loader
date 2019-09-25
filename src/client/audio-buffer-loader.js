@@ -191,10 +191,23 @@ const serviceFactory = function(Service) {
       // decompose def given object
       decomposePathObj(dataObj, pathList, refList, false);
       const prefixedPathList = prefixPaths(pathList, this.options.assetsDomain);
+      // allow special caracters in filename (ex: sound-A#.mp3)
+      // @note - if we apply on the whole path, it can conflict with
+      // the way polka router works, so we only encode the basename.
+      // @note - probably this should be done in waves-loaders
+      const prefixedURI = prefixedPathList.map(p => {
+        const parts = p.split(/\//);
+        const basename = parts.pop();
+        const uri = encodeURIComponent(basename);
+        parts.push(uri);
+        return parts.join('/');
+      });
 
-      if (prefixedPathList.length) {
+      console.log(prefixedPathList, prefixedURI);
+
+      if (prefixedURI.length) {
         try {
-          const loadedObjList = await this._loader.load(prefixedPathList, {
+          const loadedObjList = await this._loader.load(prefixedURI, {
             wrapAroundExtention: this.options.audioWrapTail,
           });
 

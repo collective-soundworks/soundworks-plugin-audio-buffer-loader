@@ -8,7 +8,6 @@ import serveStatic from 'serve-static';
 import compile from 'template-literal';
 
 import audioBufferLoaderServiceFactory from '@soundworks/service-audio-buffer-loader/server';
-
 import PlayerExperience from './PlayerExperience';
 
 const ENV = process.env.ENV || 'default';
@@ -46,7 +45,6 @@ console.log(`
     server.router.use(serveStatic('public'));
     // additionnal static routing (i.e. project specific or something)
     server.router.use('my-project', serveStatic('my-project'));
-
     server.router.use('build', serveStatic(path.join('.build', 'public')));
 
     const playerExperience = new PlayerExperience(server, 'player');

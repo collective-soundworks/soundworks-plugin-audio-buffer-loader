@@ -11,7 +11,7 @@ async function init($container, index) {
     client.registerService('audio-buffer-loader', audioBufferLoaderServiceFactory, {
       assetsDomain: config.env.assetsDomain,
       data: {
-        a: 'audio/a.mp3', // in public folder
+        'a#': 'audio/a#.mp3', // in public folder
         aJson: 'audio/a.json',
         cApp: 'my-project/audio/c.mp3', // in an additionnal public projet folder
         arr: [
@@ -52,7 +52,7 @@ async function init($container, index) {
 
 window.addEventListener('load', async () => {
   const $container = document.querySelector('#container');
-  const numClients = 10;
+  const numClients = 1;
 
   if (numClients > 1) {
     for (let i = 0; i < numClients; i++) {
@@ -63,20 +63,6 @@ window.addEventListener('load', async () => {
 
       init($div, i);
     }
-
-    // const $initPlatform = document.createElement('div');
-    // $initPlatform.classList.add('init-platform');
-    // $initPlatform.textContent = 'resume';
-
-    // function initPlatform(e) {
-    //   platformServices.forEach(service => service.onUserGesture(e));
-    //   $initPlatform.remove();
-    // }
-
-    // $initPlatform.addEventListener('touchend', initPlatform);
-    // $initPlatform.addEventListener('mouseup', initPlatform);
-
-    // document.body.appendChild($initPlatform);
   } else {
     init($container, 0);
   }
