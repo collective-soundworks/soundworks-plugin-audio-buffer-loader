@@ -201,8 +201,6 @@ const serviceFactory = function(Service) {
         return parts.join('/');
       });
 
-      console.log(prefixedPathList, prefixedURI);
-
       if (prefixedURI.length) {
         try {
           const loadedObjList = await this._loader.load(prefixedURI, {
