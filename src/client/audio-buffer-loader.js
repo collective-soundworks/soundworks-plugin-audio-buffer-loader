@@ -152,8 +152,6 @@ const serviceFactory = function(Service) {
     }
 
     async start() {
-      super.start();
-
       this.state = await this.client.stateManager.create(`s:${this.name}`);
       this.started();
 

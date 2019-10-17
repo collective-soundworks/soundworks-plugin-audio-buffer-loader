@@ -1,7 +1,7 @@
 {
   "name": "@soundworks/service-audio-buffer-loader",
-  "version": "0.0.1-alpha.0",
-  "description": "soundworks service deicated at loading audio files and related data",
+  "version": "0.0.1-alpha.1",
+  "description": "soundworks service dedicated at loading audio files and related data",
   "authors": [
     "Benjamin Matuszewski"
   ],

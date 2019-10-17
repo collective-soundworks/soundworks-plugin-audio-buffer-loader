@@ -22,8 +22,6 @@ const serviceFactory = function(Service) {
     }
 
     start() {
-      this.ready();
-
       this.server.stateManager.observe(async (schemaName, clientId) => {
         if (schemaName === `s:${this.name}`) {
           const state = await this.server.stateManager.attach(schemaName, clientId);
@@ -39,14 +37,6 @@ const serviceFactory = function(Service) {
       this.started();
       this.ready()
     }
-
-    // connect(client) {
-    //   super.connect(client);
-    // }
-
-    // disconnect(client) {
-    //   super.disconnect(client);
-    // }
   }
 }
 
