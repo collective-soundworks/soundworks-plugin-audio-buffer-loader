@@ -16,7 +16,8 @@
     + [Registering the plugin](#registering-the-plugin-1)
     + [Requiring the plugin](#requiring-the-plugin-1)
   * [Loading files](#loading-files)
-  * [Tracking loading status](#tracking-loading-status)
+  * [Getting and subscribing to loading status change](#getting-and-subscribing-to-loading-status-change)
+  * [Keeping in sync with a directory using the [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem)](#keeping-in-sync-with-a-directory-using-the-soundworksplugin-filesystemhttpsgithubcomcollective-soundworkssoundworks-plugin-filesystem)
 - [Credits](#credits)
 - [License](#license)
 
