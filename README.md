@@ -184,7 +184,7 @@ class MyExperience extends AbstractExperience {
         defObj[leaf.name] = leaf.url;
       }
     });
-
+    // load files and clear old cached buffers
     const loadedObject = await this.audioBufferLoader.load(defObj, true);
     // do something with your buffers
   }
