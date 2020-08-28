@@ -150,7 +150,7 @@ const loadingState = this.audioBufferLoader.get('loading');
 
 ### Keeping in sync with a directory using the `@soundworks/plugin-filesystem`
 
-In working situation you might want to add and remove sound files from your application to make tests. The [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem) can be used in conjunction with the `@soundworks/plugin-audio-buffer-loader` to make sure your clients are always synced with the content of a given directory.
+In working situation you might want to dynamically add and remove sound files while your application is running to make tests. The [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem) can be used in conjunction with the `@soundworks/plugin-audio-buffer-loader` to ensure your clients `AudioBuffers` are synced with the content of a given directory.
 
 Assuming the [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem) is configured to track changes in a directory named `soundbank`, the client can simply observe these changes to keep `AudioBuffers` synced as follow:
 
