@@ -1,2 +1,2 @@
-import serviceFactory from './audio-buffer-loader.js';
-export default serviceFactory;
+import pluginFactory from './plugin-audio-buffer-loader.js';
+export default pluginFactory;

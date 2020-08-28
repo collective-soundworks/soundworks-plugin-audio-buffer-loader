@@ -1,40 +1,36 @@
 {
-  "name": "@soundworks/service-audio-buffer-loader",
-  "version": "0.0.1-alpha.3",
-  "description": "soundworks service dedicated at loading audio files and related data",
+  "name": "@soundworks/plugin-audio-buffer-loader",
+  "version": "1.0.0",
+  "description": "soundworks plugin for loading and managing audio buffers",
   "authors": [
     "Benjamin Matuszewski"
   ],
+  "private": true,
   "license": "BSD-3-Clause",
+  "scripts": {
+    "clean": "rm -Rf client && rm -Rf server",
+    "toc": "markdown-toc -i README.md",
+    "prepublishOnly": "npm run build",
+    "build": "npm run toc && npm run clean && babel src --out-dir .",
+    "dev": "npm run build && chokidar src/ -c \"babel src --out-dir .\""
+  },
   "publishConfig": {
     "access": "public"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/collective-soundworks/soundworks-service-audio-buffer-loader"
-  },
-  "scripts": {
-    "clean": "rm -Rf client && rm -Rf server",
-    "deploy": "np --yolo",
-    "doc": "jsdoc -c jsdoc.json",
-    "version": "npm run clean && npm run transpile && npm run doc && git add docs",
-    "transpile:client": "babel src/client --out-dir client",
-    "transpile:server": "babel src/server --out-dir server",
-    "transpile": "npm run transpile:server && npm run transpile:client",
-    "watch:client": "chokidar src/client/ -c \"npm run transpile:client\"",
-    "watch:server": "chokidar src/server/ -c \"npm run transpile:server\"",
-    "watch": "npm run clean && npm run transpile && concurrently \"npm run watch:client\" \"npm run watch:server\""
+    "url": "https://github.com/collective-soundworks/soundworks-plugin-template"
   },
   "dependencies": {
     "lodash.clonedeep": "^4.5.0",
     "waves-loaders": "^0.1.5"
   },
   "devDependencies": {
-    "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-transform-modules-commonjs": "^7.4.4",
-    "chokidar": "^3.0.1",
-    "chokidar-cli": "^1.2.2",
-    "concurrently": "^4.1.0"
+    "@babel/cli": "^7.10.5",
+    "@babel/core": "^7.11.1",
+    "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "chokidar": "^3.4.2",
+    "chokidar-cli": "^2.1.0",
+    "markdown-toc": "^1.2.0"
   }
 }
