@@ -17,7 +17,7 @@
     + [Requiring the plugin](#requiring-the-plugin-1)
   * [Loading files](#loading-files)
   * [Getting and subscribing to loading status change](#getting-and-subscribing-to-loading-status-change)
-  * [Keeping in sync with a directory using the [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem)](#keeping-in-sync-with-a-directory-using-the-soundworksplugin-filesystemhttpsgithubcomcollective-soundworkssoundworks-plugin-filesystem)
+  * [Keeping in sync with a directory using the `@soundworks/plugin-filesystem`](#keeping-in-sync-with-a-directory-using-the-soundworksplugin-filesystem)
 - [Credits](#credits)
 - [License](#license)
 
@@ -148,7 +148,7 @@ const loadingState = this.audioBufferLoader.get('loading');
 // > true || false
 ```
 
-### Keeping in sync with a directory using the [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem)
+### Keeping in sync with a directory using the `@soundworks/plugin-filesystem`
 
 In working situation you might want to add and remove sound files from your application to make tests. The [`@soundworks/plugin-filesystem`](https://github.com/collective-soundworks/soundworks-plugin-filesystem) can be used in conjunction with the `@soundworks/plugin-audio-buffer-loader` to make sure your clients are always synced with the content of a given directory.
 
