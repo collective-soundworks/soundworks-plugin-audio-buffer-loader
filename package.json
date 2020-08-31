@@ -5,7 +5,6 @@
   "authors": [
     "Benjamin Matuszewski"
   ],
-  "private": true,
   "license": "BSD-3-Clause",
   "scripts": {
     "clean": "rm -Rf client && rm -Rf server",
