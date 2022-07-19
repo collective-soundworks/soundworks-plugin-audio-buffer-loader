@@ -1,24 +1,20 @@
 import cloneDeep from 'lodash.clonedeep';
 import { SuperLoader } from 'waves-loaders';
 
-// supported media formats + json
-// https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats
-const regexp = /\.(wav|mp3|json)$/i;
-
 /**
  * only match wav, mp3 and json files
  */
-function isFilePath(str) {
-  return (typeof str === 'string' && regexp.test(str));
+function isFilePath(str, supportedExtensionRegExp) {
+  return (typeof str === 'string' && supportedExtensionRegExp.test(str));
 }
 
 
-function decomposePathObj(obj, pathList, refList, dirs = false) {
+function decomposePathObj(obj, pathList, refList, supportedExtensionRegExp, dirs = false) {
   for (let key in obj) {
     key = Array.isArray(obj) ? parseInt(key) : key;
     const value = obj[key];
 
-    if (isFilePath(value)) {
+    if (isFilePath(value, supportedExtensionRegExp)) {
       const ref = { obj, key };
       let index = pathList.indexOf(value);
 
@@ -33,7 +29,7 @@ function decomposePathObj(obj, pathList, refList, dirs = false) {
 
       obj[key] = null;
     } else if (typeof value === 'object') {
-      decomposePathObj(value, pathList, refList, dirs);
+      decomposePathObj(value, pathList, refList, supportedExtensionRegExp, dirs);
     }
   }
 }
@@ -63,10 +59,11 @@ function prefixPaths(pathList, prefix) {
   const isAbsolute = /^https?:\/\/|^\/\//i;
 
   pathList = pathList.map((path) => {
-    if (isAbsolute.test(path) || prefix === '/')
+    if (isAbsolute.test(path) || prefix === '/') {
       return path;
-    else
+    } else {
       return prefix + path;
+    }
   });
 
   return pathList;
@@ -140,7 +137,9 @@ const pluginFactory = function(AbstractPlugin) {
       const defaults = {
         assetsDomain: '',
         data: null,
-        // directories:
+        // supported media formats + json
+        // https://developer.mozilla.org/en-US/docs/Web/HTML/Supported_media_formats
+        supportedExtensionRegExp: /\.(wav|mp3|json)$/i,
       };
 
       this.definitions = {};
@@ -188,7 +187,7 @@ const pluginFactory = function(AbstractPlugin) {
 
       const dataObj = cloneDeep(defObj);
       // decompose def given object
-      decomposePathObj(dataObj, pathList, refList, false);
+      decomposePathObj(dataObj, pathList, refList, this.options.supportedExtensionRegExp, false);
       const prefixedPathList = prefixPaths(pathList, this.options.assetsDomain);
       // allow special caracters in filename (ex: sound-A#.mp3)
       // @note - if we apply on the whole path, it can conflict with
@@ -204,9 +203,7 @@ const pluginFactory = function(AbstractPlugin) {
 
       if (prefixedURI.length) {
         try {
-          const loadedObjList = await this._loader.load(prefixedURI, {
-            wrapAroundExtention: this.options.audioWrapTail,
-          });
+          const loadedObjList = await this._loader.load(prefixedURI);
 
           // repopulate dataObj with loaded buffer and json
           populateRefList(refList, loadedObjList);
