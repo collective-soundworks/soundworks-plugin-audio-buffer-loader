@@ -9,9 +9,10 @@
   "scripts": {
     "clean": "rm -Rf client && rm -Rf server",
     "toc": "markdown-toc -i README.md",
-    "prepublishOnly": "npm run build",
-    "build": "npm run toc && npm run clean && babel src --out-dir .",
-    "dev": "npm run build && chokidar src/ -c \"babel src --out-dir .\""
+    "prepublishOnly": "npm run toc && npm run build",
+    "build": "npm run clean && babel src --out-dir .",
+    "dev": "npm run build && chokidar src/ -c \"babel src --out-dir .\"",
+    "test": "mocha"
   },
   "publishConfig": {
     "access": "public"
@@ -21,13 +22,16 @@
     "url": "https://github.com/collective-soundworks/soundworks-plugin-audio-buffer-loader"
   },
   "dependencies": {
+    "chai": "^4.3.6",
     "lodash.clonedeep": "^4.5.0",
-    "waves-loaders": "^0.1.5"
+    "mocha": "^10.0.0",
+    "waves-loaders": "^0.1.6"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
     "@babel/core": "^7.11.1",
     "@babel/plugin-transform-modules-commonjs": "^7.10.4",
+    "@soundworks/core": "^3.2.2",
     "chokidar": "^3.4.2",
     "chokidar-cli": "^2.1.0",
     "markdown-toc": "^1.2.0"
