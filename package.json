@@ -1,6 +1,6 @@
 {
   "name": "@soundworks/plugin-audio-buffer-loader",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "soundworks plugin for loading and managing audio buffers and related json data.",
   "authors": [
     "Benjamin Matuszewski"
